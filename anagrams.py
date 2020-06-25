@@ -8,30 +8,22 @@ Module provides a function, find_anagrams(), which can be used to do the same
 for an arbitrary list of strings.
 """
 
-# Your name here, and any other people/sources who helped.
-# Give credit where credit is due.
-__author__ = "???"
+
+__author__ = "PokeyJess"
 
 import sys
 
 
 def alphabetize(string):
-    """Returns alphabetized version of the string."""
     return "".join(sorted(string.lower()))
 
 
 def find_anagrams(words):
-    """
-    Returns a dictionary with keys that are alphabetized words and values
-    that are all words that, when alphabetized, match the key.
-    Example:
-    {'dgo': ['dog'], 'act': ['cat', 'act']}
-    """
     anagrams = {
-        alphabetize(word): [
-            w for w in words
-            if alphabetize(w) == alphabetize(word)]
-        for word in words}
+        alphabetize(word): [] for word in words}
+    for word in words:
+        if alphabetize(word) in anagrams:
+            anagrams[alphabetize(word)].append(word)
     return anagrams
 
 
